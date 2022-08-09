@@ -1,6 +1,6 @@
 require("config")
-require("lsp")
 require("plugins")
+-- require("lsp")
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -13,5 +13,5 @@ require("nvim-tree").setup()
 require('gitsigns-setup')
 require("treesitter-setup")
 require("lualine-setup")
-require("tokyonight-setup")
+require("nord-setup")
 require("nvim-cmp-setup")
