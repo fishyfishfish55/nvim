@@ -17,6 +17,7 @@ vim.opt.smartindent = true                  -- Makes indenting smart
 vim.opt.autoindent = true                   -- Good auto indent
 vim.opt.laststatus = 2                      -- Always display the status line
 vim.opt.number = true                       -- Line numbers
+vim.opt.relativenumber = true               -- Relative line numbers
 vim.opt.cursorline = true                   -- Enable highlighting of the current line
 vim.opt.background = "dark"                 -- tell vim what the background color looks like
 vim.opt.showtabline = 2                     -- Always show tabs

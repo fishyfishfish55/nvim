@@ -40,15 +40,9 @@ require('lspconfig')['jedi_language_server'].setup{
     on_attach = on_attach,
     flags = lsp_flags,
 }
--- require('lspconfig')['rust_analyzer'].setup{
---     on_attach = on_attach,
---     flags = lsp_flags,
---     -- Server-specific settings...
---     settings = {
---       ["rust-analyzer"] = {},
---     }
--- }
-require('rust-tools').setup({})
+
+require('rust-tools').setup{}
+require('ccls').setup{}
 require('lspconfig').sumneko_lua.setup {
   settings = {
     Lua = {
