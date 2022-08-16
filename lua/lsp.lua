@@ -42,7 +42,7 @@ require('lspconfig')['jedi_language_server'].setup{
 }
 
 require('rust-tools').setup{}
-require('ccls').setup{}
+-- require('ccls').setup{}
 require('lspconfig').sumneko_lua.setup {
   settings = {
     Lua = {

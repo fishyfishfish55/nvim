@@ -1,6 +1,5 @@
 require("config")
 require("plugins")
--- require("lsp")
 vim.cmd([[
   augroup packer_user_config
     autocmd!
@@ -15,3 +14,4 @@ require("treesitter-setup")
 require("lualine-setup")
 require("nord-setup")
 require("nvim-cmp-setup")
+require("lsp")
