@@ -6,12 +6,18 @@ return require('packer').startup(function(use)
 	-- Sweet tokyo night theme
 	use {
 		'folke/tokyonight.nvim',
---		config = function () require("tokyonight-setup") end
+-- 		config = function () require("tokyonight-setup") end
+	}
+	use {
+		"ellisonleao/gruvbox.nvim",
+		config = function ()
+			vim.cmd([[colorscheme gruvbox]])
+		end
 	}
 	-- Sweeter nord theme
 	use {
 		'arcticicestudio/nord-vim',
-		config = function () require("nord-setup") end
+--		config = function () require("nord-setup") end
 	}
 	-- Awesome dashboard
 	use {
