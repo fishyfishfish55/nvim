@@ -10,19 +10,22 @@ return require('packer').startup(function(use)
 	}
 	use {
 		"ellisonleao/gruvbox.nvim",
-		config = function ()
-			vim.cmd([[colorscheme gruvbox]])
-		end
+--		config = function ()
+--			vim.cmd([[colorscheme gruvbox]])
+--		end
 	}
-	-- Sweeter nord theme
 	use {
-		'arcticicestudio/nord-vim',
---		config = function () require("nord-setup") end
+		"EdenEast/nightfox.nvim",
+		config = function ()
+			vim.cmd("colorscheme nordfox")
+		end
 	}
 	-- Awesome dashboard
 	use {
-		'glepnir/dashboard-nvim',
-		config = function() require("dashboard-setup") end
+		'goolord/alpha-nvim',
+		config = function ()
+			require'alpha'.setup(require'alpha.themes.dashboard'.config)
+		end
 	}
 	-- Tree with icons
 	use {
