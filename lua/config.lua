@@ -32,3 +32,7 @@ vim.opt.wrap = true
 vim.opt.listchars = "tab:>-,trail:~,extends:>,precedes:<,space:·"
 vim.opt.completeopt = "menu,menuone,noselect"
 vim.opt.list = true
+
+vim.cmd([[
+	autocmd TermOpen * setlocal nonumber norelativenumber
+]])
