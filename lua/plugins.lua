@@ -6,7 +6,7 @@ return require('packer').startup(function(use)
 	-- Sweet tokyo night theme
 	use {
 		'folke/tokyonight.nvim',
-		config = function () require("tokyonight-setup") end
+--		config = function () require("tokyonight-setup") end
 	}
 	use {
 		"ellisonleao/gruvbox.nvim",
@@ -16,9 +16,9 @@ return require('packer').startup(function(use)
 	}
 	use {
 		"EdenEast/nightfox.nvim",
---		config = function ()
---			vim.cmd("colorscheme nordfox")
---		end
+		config = function ()
+			vim.cmd("colorscheme nordfox")
+		end
 	}
 	-- Awesome dashboard
 	use {
