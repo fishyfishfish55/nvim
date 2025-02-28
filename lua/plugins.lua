@@ -24,7 +24,18 @@ return {
        },
    },
   { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
-  { "echasnovski/mini.surround", version = '*', config = true },
+  {
+    "roobert/surround-ui.nvim",
+    dependencies = {
+      "kylechui/nvim-surround",
+      "folke/which-key.nvim",
+    },
+    config = function()
+      require("surround-ui").setup({
+        root_key = "S"
+      })
+    end,
+  },
   {
     "nvim-lualine/lualine.nvim", config = function()
         require('lualine').setup {
