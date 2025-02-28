@@ -1,109 +1,90 @@
-vim.cmd [[packadd packer.nvim]]
-
-return require('packer').startup(function(use)
-	-- Packer can manage itself
-	use {'wbthomason/packer.nvim'}
-	-- Sweet tokyo night theme
-	use {
-		'folke/tokyonight.nvim',
---		config = function () require("tokyonight-setup") end
-	}
-	use {
-		"ellisonleao/gruvbox.nvim",
---		config = function ()
---			vim.cmd([[colorscheme gruvbox]])
---		end
-	}
-	use {
-		"EdenEast/nightfox.nvim",
-		config = function ()
-			vim.cmd("colorscheme nordfox")
-		end
-	}
-	-- Awesome dashboard
-	use {
-		'goolord/alpha-nvim',
-		config = function ()
-			require'alpha'.setup(require'alpha.themes.dashboard'.config)
-		end
-	}
-	-- Tree with icons
-	use {
-		'kyazdani42/nvim-tree.lua',
-		requires = {
-		'kyazdani42/nvim-web-devicons', -- optional, for file icons
-		},
-		tag = 'nightly', -- optional, updated every week. (see issue #1193)
-		config = function() require("nvim-tree").setup() end
-	}
-	-- Telescope
-	use {
-		'nvim-telescope/telescope.nvim',
-		requires = {'nvim-lua/plenary.nvim'}
-	}
-	-- Git diff gutter
-	use {
-		'lewis6991/gitsigns.nvim',
-		config = function() require('gitsigns-setup') end
-	}
-	-- Statusline
-	use {
-		'nvim-lualine/lualine.nvim',
-		requires = { 'kyazdani42/nvim-web-devicons', opt = true },
-		config = function () require("lualine-setup") end
-	}
-	-- Tabline
-	use {
-	  'kdheepak/tabline.nvim',
-	  config = function()
-		require'tabline'.setup {
-		  -- Defaults configuration options
-		  enable = true,
-		  options = {
-		  -- If lualine is installed tabline will use separators configured in lualine by default.
-		  -- These options can be used to override those settings.
-			section_separators = {'', ''},
-			component_separators = {'', ''},
-			max_bufferline_percent = 66, -- set to nil by default, and it uses vim.o.columns * 2/3
-			show_tabs_always = false, -- this shows tabs only when there are more than one tab or if the first tab is named
-			show_devicons = true, -- this shows devicons in buffer section
-			show_bufnr = false, -- this appends [bufnr] to buffer section,
-			show_filename_only = false, -- shows base filename only instead of relative path in filename
-			modified_icon = "+ ", -- change the default modified icon
-			modified_italic = false, -- set to true by default; this determines whether the filename turns italic if modified
-			show_tabs_only = false, -- this shows only tabs instead of tabs + buffers
-		  }
-		}
-		vim.cmd[[
-		  set guioptions-=e " Use showtabline in gui vim
-		  set sessionoptions+=tabpages,globals " store tabpages and globals in session
-		]]
-	  end,
-	  requires = { { 'hoob3rt/lualine.nvim', opt=true }, {'kyazdani42/nvim-web-devicons', opt = true} }
-	}
-	-- Configurations for Nvim LSP
-	use {'neovim/nvim-lspconfig'}
-	use {'simrat39/rust-tools.nvim'}
-	-- Snippets
-	use {'hrsh7th/cmp-nvim-lsp'}
-	use {'hrsh7th/cmp-buffer'}
-	use {'hrsh7th/cmp-path'}
-	use {'hrsh7th/cmp-cmdline'}
-	use {
-		'hrsh7th/nvim-cmp',
-		config = function () require("nvim-cmp-setup") end
-	}
-	use {'L3MON4D3/LuaSnip'}
-	use {'saadparwaiz1/cmp_luasnip'}
-	--Treesitter
-	use {
-		'nvim-treesitter/nvim-treesitter',
-		run = ':TSUpdate',
-		config = function() require("treesitter-setup") end
-	}
-	-- Auto pairs
-	use {
-		"windwp/nvim-autopairs",
-		config = function() require("nvim-autopairs").setup {} end
-	}
-end)
+return {
+   {
+       "folke/which-key.nvim",
+       event = "VeryLazy",
+       opts = {
+         spec = {
+           { "<C-S>", "<cmd>w<cr>", desc = "Save" },
+           { "<leader>P", '"*p', desc = "Paste Before from System Clipboard" },
+           { "<leader>p", '"*p', desc = "Paste from System Clipboard" },
+           { "<leader>y", '"*y', desc = "Copy to System Clipboard" },
+           { "<leader>f", ":Telescope find_files<cr>", desc = "File picker", mode = "n"},
+           { "<leader>b", ":Telescope buffers<cr>", desc = "File picker", mode = "n"},
+           { "<C-S>", "<cmd>w<cr>", desc = "Save", mode = "i" },
+         },
+       },
+       keys = {
+         {
+           "<leader>?",
+           function()
+             require("which-key").show({ global = false })
+           end,
+           desc = "Buffer Local Keymaps (which-key)",
+         },
+       },
+   },
+  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+  { "echasnovski/mini.surround", version = '*', config = true },
+  {
+    "nvim-lualine/lualine.nvim", config = function()
+        require('lualine').setup {
+          options = {theme = 'gruvbox'},
+            sections = {
+                lualine_a = {{'mode', fmt = function(str) return str:sub(1,1) end }},
+                lualine_b = {},
+                lualine_c = {{'filename', path=1, symbols = { modified='⭑'}}},
+                lualine_x = {"filetype"},
+                lualine_y = {'diagnostics'},
+            },
+        }
+    end
+  },
+  { 'alexghergh/nvim-tmux-navigation', config = function()
+  
+      local nvim_tmux_nav = require('nvim-tmux-navigation')
+  
+      nvim_tmux_nav.setup {
+          disable_when_zoomed = true -- defaults to false
+      }
+  
+      vim.keymap.set('n', "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
+      vim.keymap.set('n', "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
+      vim.keymap.set('n', "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
+      vim.keymap.set('n', "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
+      vim.keymap.set('n', "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
+      vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
+  
+  end
+  },
+  {
+      'nvim-telescope/telescope.nvim', tag = '0.1.8',
+      dependencies = {'nvim-lua/plenary.nvim'},
+      config = function()
+          require('telescope').setup {
+            pickers = {
+              buffers = {
+                mappings = {
+                  n = {
+                    ["dd"] = "delete_buffer",
+                    }
+                }
+              }
+            }
+          }
+      end
+  },
+  {'nvim-telescope/telescope-symbols.nvim'},
+  {'akinsho/git-conflict.nvim', version = "*", config = true},
+  {
+    'lewis6991/gitsigns.nvim',
+    config = function()
+        require('gitsigns').setup {
+            word_diff = true,
+            current_line_blame = true,
+            current_line_blame_opts = {
+                delay = 200,
+            },
+        }
+    end
+  },
+}
