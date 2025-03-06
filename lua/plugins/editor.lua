@@ -1,5 +1,6 @@
 return {
   { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+  {"brenoprata10/nvim-highlight-colors", config = true},
   {
   "nvim-lualine/lualine.nvim", config = function()
     require('lualine').setup {

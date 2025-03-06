@@ -4,13 +4,10 @@ return {
      event = "VeryLazy",
      opts = {
      spec = {
-       { "<C-S>", "<cmd>w<cr>", desc = "Save" },
-       { "<leader>P", '"*p', desc = "Paste Before from System Clipboard" },
        { "<leader>p", '"*p', desc = "Paste from System Clipboard" },
        { "<leader>y", '"*y', desc = "Copy to System Clipboard" },
        { "<leader>f", ":Telescope find_files<cr>", desc = "File picker", mode = "n"},
-       { "<leader>b", ":Telescope buffers<cr>", desc = "File picker", mode = "n"},
-       { "<C-S>", "<cmd>w<cr>", desc = "Save", mode = "i" },
+       { "<leader>b", ":Telescope buffers<cr>", desc = "Buffers", mode = "n"},
      },
      },
      keys = {
