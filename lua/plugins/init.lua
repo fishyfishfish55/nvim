@@ -23,21 +23,6 @@ return {
      },
      },
    },
-  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
-  {
-  "nvim-lualine/lualine.nvim", config = function()
-    require('lualine').setup {
-      options = {theme = 'gruvbox'},
-      sections = {
-        lualine_a = {{'mode', fmt = function(str) return str:sub(1,1) end }},
-        lualine_b = {},
-        lualine_c = {{'filename', path=1, symbols = { modified='⭑'}}},
-        lualine_x = {"filetype"},
-        lualine_y = {'diagnostics'},
-      },
-    }
-  end
-  },
   { 'alexghergh/nvim-tmux-navigation', config = function()
   
     local nvim_tmux_nav = require('nvim-tmux-navigation')
@@ -53,83 +38,6 @@ return {
     vim.keymap.set('n', "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
     vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
   
-  end
-  },
-  {
-    'nvim-telescope/telescope.nvim', tag = '0.1.8',
-    dependencies = {'nvim-lua/plenary.nvim'},
-    config = function()
-      require('telescope').setup {
-      pickers = {
-        buffers = {
-        mappings = {
-          n = {
-          ["dd"] = "delete_buffer",
-          }
-        }
-        }
-      }
-      }
-    end
-  },
-  {'nvim-telescope/telescope-symbols.nvim'},
-  {'akinsho/git-conflict.nvim', version = "*", config = true},
-  {
-  'lewis6991/gitsigns.nvim',
-  config = function()
-    require('gitsigns').setup {
-      word_diff = true,
-      current_line_blame = true,
-      current_line_blame_opts = {
-        delay = 200,
-      },
-    }
-  end
-  },
-  {
-    'nvim-treesitter/nvim-treesitter',
-    config = function()
-      require('nvim-treesitter.configs').setup {
-        ensure_installed = {"c", "cpp", "lua", "query", "python", "bash", "java", "markdown", "markdown_inline",},
-        highlight = {enable = true},
-        rainbow = {
-          enable = true,
-          extended_mode = true,
-          max_file_lines = nil,
-        },
-        textobjects = {
-          select = {
-            enable = true,
-            lookahead = false,
-            keymaps = {
-              ["af"] = "@function.outer",
-              ["if"] = "@function.inner",
-              ["ac"] = "@class.outer",
-              ["ic"] = "@class.inner",
-              ["aa"] = "@parameter.outer",
-              ["ia"] = "@parameter.inner",
-            }
-          }
-        }
-      }
-    end
-  },
-  {'nvim-treesitter/nvim-treesitter-textobjects'},
-  {
-  'romgrk/nvim-treesitter-context',
-  config = function()
-    require'treesitter-context'.setup{
-    enable = true,
-    throttle = true,
-    max_lines = 0,
-    patterns = {
-      default = {
-      'class',
-      'function',
-      'method',
-      },
-    },
-    }
   end
   },
   {
