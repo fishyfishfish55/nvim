@@ -1,101 +1,142 @@
 return {
    {
-       "folke/which-key.nvim",
-       event = "VeryLazy",
-       opts = {
-         spec = {
-           { "<C-S>", "<cmd>w<cr>", desc = "Save" },
-           { "<leader>P", '"*p', desc = "Paste Before from System Clipboard" },
-           { "<leader>p", '"*p', desc = "Paste from System Clipboard" },
-           { "<leader>y", '"*y', desc = "Copy to System Clipboard" },
-           { "<leader>f", ":Telescope find_files<cr>", desc = "File picker", mode = "n"},
-           { "<leader>b", ":Telescope buffers<cr>", desc = "File picker", mode = "n"},
-           { "<C-S>", "<cmd>w<cr>", desc = "Save", mode = "i" },
-         },
-       },
-       keys = {
-         {
-           "<leader>?",
-           function()
-             require("which-key").show({ global = false })
-           end,
-           desc = "Buffer Local Keymaps (which-key)",
-         },
-       },
+     "folke/which-key.nvim",
+     event = "VeryLazy",
+     opts = {
+     spec = {
+       { "<C-S>", "<cmd>w<cr>", desc = "Save" },
+       { "<leader>P", '"*p', desc = "Paste Before from System Clipboard" },
+       { "<leader>p", '"*p', desc = "Paste from System Clipboard" },
+       { "<leader>y", '"*y', desc = "Copy to System Clipboard" },
+       { "<leader>f", ":Telescope find_files<cr>", desc = "File picker", mode = "n"},
+       { "<leader>b", ":Telescope buffers<cr>", desc = "File picker", mode = "n"},
+       { "<C-S>", "<cmd>w<cr>", desc = "Save", mode = "i" },
+     },
+     },
+     keys = {
+     {
+       "<leader>?",
+       function()
+       require("which-key").show({ global = false })
+       end,
+       desc = "Buffer Local Keymaps (which-key)",
+     },
+     },
    },
   { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
   {
-    "roobert/surround-ui.nvim",
-    dependencies = {
-      "kylechui/nvim-surround",
-      "folke/which-key.nvim",
-    },
-    config = function()
-      require("surround-ui").setup({
-        root_key = "S"
-      })
-    end,
-  },
-  {
-    "nvim-lualine/lualine.nvim", config = function()
-        require('lualine').setup {
-          options = {theme = 'gruvbox'},
-            sections = {
-                lualine_a = {{'mode', fmt = function(str) return str:sub(1,1) end }},
-                lualine_b = {},
-                lualine_c = {{'filename', path=1, symbols = { modified='⭑'}}},
-                lualine_x = {"filetype"},
-                lualine_y = {'diagnostics'},
-            },
-        }
-    end
+  "nvim-lualine/lualine.nvim", config = function()
+    require('lualine').setup {
+      options = {theme = 'gruvbox'},
+      sections = {
+        lualine_a = {{'mode', fmt = function(str) return str:sub(1,1) end }},
+        lualine_b = {},
+        lualine_c = {{'filename', path=1, symbols = { modified='⭑'}}},
+        lualine_x = {"filetype"},
+        lualine_y = {'diagnostics'},
+      },
+    }
+  end
   },
   { 'alexghergh/nvim-tmux-navigation', config = function()
   
-      local nvim_tmux_nav = require('nvim-tmux-navigation')
+    local nvim_tmux_nav = require('nvim-tmux-navigation')
   
-      nvim_tmux_nav.setup {
-          disable_when_zoomed = true -- defaults to false
-      }
+    nvim_tmux_nav.setup {
+      disable_when_zoomed = true -- defaults to false
+    }
   
-      vim.keymap.set('n', "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
-      vim.keymap.set('n', "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
-      vim.keymap.set('n', "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
-      vim.keymap.set('n', "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
-      vim.keymap.set('n', "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
-      vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
+    vim.keymap.set('n', "<C-h>", nvim_tmux_nav.NvimTmuxNavigateLeft)
+    vim.keymap.set('n', "<C-j>", nvim_tmux_nav.NvimTmuxNavigateDown)
+    vim.keymap.set('n', "<C-k>", nvim_tmux_nav.NvimTmuxNavigateUp)
+    vim.keymap.set('n', "<C-l>", nvim_tmux_nav.NvimTmuxNavigateRight)
+    vim.keymap.set('n', "<C-\\>", nvim_tmux_nav.NvimTmuxNavigateLastActive)
+    vim.keymap.set('n', "<C-Space>", nvim_tmux_nav.NvimTmuxNavigateNext)
   
   end
   },
   {
-      'nvim-telescope/telescope.nvim', tag = '0.1.8',
-      dependencies = {'nvim-lua/plenary.nvim'},
-      config = function()
-          require('telescope').setup {
-            pickers = {
-              buffers = {
-                mappings = {
-                  n = {
-                    ["dd"] = "delete_buffer",
-                    }
-                }
-              }
-            }
+    'nvim-telescope/telescope.nvim', tag = '0.1.8',
+    dependencies = {'nvim-lua/plenary.nvim'},
+    config = function()
+      require('telescope').setup {
+      pickers = {
+        buffers = {
+        mappings = {
+          n = {
+          ["dd"] = "delete_buffer",
           }
-      end
+        }
+        }
+      }
+      }
+    end
   },
   {'nvim-telescope/telescope-symbols.nvim'},
   {'akinsho/git-conflict.nvim', version = "*", config = true},
   {
-    'lewis6991/gitsigns.nvim',
+  'lewis6991/gitsigns.nvim',
+  config = function()
+    require('gitsigns').setup {
+      word_diff = true,
+      current_line_blame = true,
+      current_line_blame_opts = {
+        delay = 200,
+      },
+    }
+  end
+  },
+  {
+    'nvim-treesitter/nvim-treesitter',
     config = function()
-        require('gitsigns').setup {
-            word_diff = true,
-            current_line_blame = true,
-            current_line_blame_opts = {
-                delay = 200,
-            },
+      require('nvim-treesitter.configs').setup {
+        ensure_installed = {"c", "cpp", "lua", "query", "python", "bash", "java", "markdown", "markdown_inline",},
+        highlight = {enable = true},
+        rainbow = {
+          enable = true,
+          extended_mode = true,
+          max_file_lines = nil,
+        },
+        textobjects = {
+          select = {
+            enable = true,
+            lookahead = false,
+            keymaps = {
+              ["af"] = "@function.outer",
+              ["if"] = "@function.inner",
+              ["ac"] = "@class.outer",
+              ["ic"] = "@class.inner",
+              ["aa"] = "@parameter.outer",
+              ["ia"] = "@parameter.inner",
+            }
+          }
         }
+      }
+    end
+  },
+  {'nvim-treesitter/nvim-treesitter-textobjects'},
+  {
+  'romgrk/nvim-treesitter-context',
+  config = function()
+    require'treesitter-context'.setup{
+    enable = true,
+    throttle = true,
+    max_lines = 0,
+    patterns = {
+      default = {
+      'class',
+      'function',
+      'method',
+      },
+    },
+    }
+  end
+  },
+  {
+    'johmsalas/text-case.nvim',
+    config = function()
+      require('textcase').setup {}
+      require('telescope').load_extension('textcase')
     end
   },
 }
