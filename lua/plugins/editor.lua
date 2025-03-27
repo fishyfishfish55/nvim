@@ -1,5 +1,13 @@
 return {
-  { "ellisonleao/gruvbox.nvim", priority = 1000 , config = true, opts = ...},
+  {
+	  "sainnhe/gruvbox-material",
+	  lazy = false,
+	  priority = 1000 ,
+	  config = function()
+		  vim.g.gruvbox_material_foreground = 'original'
+		  vim.cmd.colorscheme('gruvbox-material')
+	  end
+  },
   {"brenoprata10/nvim-highlight-colors", config = true},
   {
   "nvim-lualine/lualine.nvim", config = function()

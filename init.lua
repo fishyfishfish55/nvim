@@ -1,5 +1,5 @@
 require("config.lazy")
-vim.cmd[[colorscheme gruvbox]]
+require("config.darkmode")
 
 vim.api.nvim_create_autocmd('TextYankPost', {
   group = vim.api.nvim_create_augroup('highlight_yank', {}),
@@ -31,7 +31,7 @@ vim.opt.laststatus = 2                      -- Always display the status line
 vim.opt.number = true                       -- Line numbers
 vim.opt.relativenumber = true               -- Relative line numbers
 vim.opt.cursorline = true                   -- Enable highlighting of the current line
-vim.opt.background = "dark"                 -- tell vim what the background color looks like
+-- vim.opt.background = "dark"                 -- tell vim what the background color looks like
 vim.opt.showtabline = 2                     -- Always show tabs
 vim.opt.showmode = false                    -- We don't need to see things like -- INSERT -- anymore
 vim.opt.backup = false                      -- This is recommended by coc
