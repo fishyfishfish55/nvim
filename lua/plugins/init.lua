@@ -3,12 +3,15 @@ return {
      "folke/which-key.nvim",
      event = "VeryLazy",
      opts = {
-     spec = {
-       { "<leader>p", '"*p', desc = "Paste from System Clipboard" },
-       { "<leader>y", '"*y', desc = "Copy to System Clipboard" },
-       { "<leader>f", ":Telescope find_files<cr>", desc = "File picker", mode = "n"},
-       { "<leader>b", ":Telescope buffers<cr>", desc = "Buffers", mode = "n"},
-     },
+       spec = {
+         -- Copy-paste
+         { "<leader>p", '"*p', desc = "Paste from System Clipboard" },
+         { "<leader>y", '"*y', desc = "Copy to System Clipboard" },
+         -- Telescope
+         { "<leader>f", ":Telescope find_files<cr>", desc = "File picker", mode = "n"},
+         { "<leader>b", ":Telescope buffers<cr>", desc = "Buffers", mode = "n"},
+         { "<leader>g", ":Telescope live_grep<cr>", desc = "Find in files", mode = "n"},
+       },
      },
      keys = {
      {
