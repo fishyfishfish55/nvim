@@ -11,6 +11,11 @@ return {
          { "<leader>f", ":Telescope find_files<cr>", desc = "File picker", mode = "n"},
          { "<leader>b", ":Telescope buffers<cr>", desc = "Buffers", mode = "n"},
          { "<leader>g", ":Telescope live_grep<cr>", desc = "Find in files", mode = "n"},
+         -- LSP
+         { "<leader>l", group = "LSP" },
+         { "<leader>ll", ":Lspsaga finder<cr>", desc = "See references", mode = "n"},
+         { "<leader>lr", ":Lspsaga rename ++project<cr>", desc = "Rename symbol", mode = "n"},
+         { "<leader>la", ":Lspsaga code_action<cr>", desc = "Code action", mode = "n"},
        },
      },
      keys = {
