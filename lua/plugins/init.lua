@@ -11,6 +11,7 @@ return {
         { "<leader>f", ":Telescope find_files<cr>", desc = "File picker", mode = "n"},
         { "<leader>b", ":Telescope buffers<cr>", desc = "Buffers", mode = "n"},
         { "<leader>g", ":Telescope live_grep<cr>", desc = "Find in files", mode = "n"},
+        { "<leader>u", ":Telescope undo<cr>", desc = "Undo tree", mode = "n"},
         -- LSP
         { "<leader>l", group = "LSP" },
         { "<leader>ll", ":Lspsaga finder<cr>", desc = "See references", mode = "n"},
