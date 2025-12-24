@@ -60,4 +60,3 @@ vim.o.wildmode = "longest:list,full"
 vim.o.expandtab = true
 vim.o.sw = 2
 
-
