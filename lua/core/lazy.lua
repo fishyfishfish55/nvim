@@ -1,3 +1,6 @@
+vim.g.mapleader = " "
+vim.g.maplocalleader = "\\"
+
 -- Bootstrap lazy.nvim
 local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
 if not (vim.uv or vim.loop).fs_stat(lazypath) then
@@ -19,39 +22,45 @@ vim.opt.rtp:prepend(lazypath)
 require("lazy").setup({
   spec = {
     -- import your plugins
-    { "folke/which-key.nvim",
-    event = "VeryLazy",
-    opts = {
-      spec = {
-        -- Copy-paste
-        { "<leader>p", '"*p', desc = "Paste from System Clipboard" },
-        { "<leader>y", '"*y', desc = "Copy to System Clipboard" },
-        -- Telescope
-        { "<leader>f", ":Telescope find_files<cr>", desc = "File picker", mode = "n"},
-        { "<leader>b", ":Telescope buffers<cr>", desc = "Buffers", mode = "n"},
-        { "<leader>g", ":Telescope live_grep<cr>", desc = "Find in files", mode = "n"},
-        { "<leader>u", ":Telescope undo<cr>", desc = "Undo tree", mode = "n"},
-        -- LSP
-        { "<leader>l", group = "LSP" },
-        { "<leader>ll", ":Lspsaga finder<cr>", desc = "See references", mode = "n"},
-        { "<leader>lr", ":Lspsaga rename ++project<cr>", desc = "Rename symbol", mode = "n"},
-        { "<leader>la", ":Lspsaga code_action<cr>", desc = "Code action", mode = "n"},
-        { "<leader>lp", ":Lspsaga peek_definition<cr>", desc = "Peek defenition", mode = "n"},
-        { "<leader>lP", ":Lspsaga peek_type_definition<cr>", desc = "Peek type defenition", mode = "n"},
-        { "gd", ":Lspsaga goto_definition<cr>", desc = "Go to defenition", mode = "n"},
-        { "gD", ":Lspsaga goto_type_definition<cr>", desc = "Go to type defenition", mode = "n"},
-      },
-    },
-    keys = {
-      {
-        "<leader>?",
-        function()
-          require("which-key").show({ global = false })
-        end,
-        desc = "Buffer Local Keymaps (which-key)",
-      },
-    },
-  }, -- which-key
+    -- LSP
+    { "neovim/nvim-lspconfig" },
+    { "williamboman/mason.nvim" },
+    { "williamboman/mason-lspconfig.nvim" },
+
+  -- which-key
+     { "folke/which-key.nvim",
+       event = "VeryLazy",
+  --     opts = {
+  --     spec = {
+  --       -- Copy-paste
+  --       { "<leader>p", '"*p', desc = "Paste from System Clipboard" },
+  --       { "<leader>y", '"*y', desc = "Copy to System Clipboard" },
+  --       -- Telescope
+  --       { "<leader>f", ":Telescope find_files<cr>", desc = "File picker", mode = "n"},
+  --       { "<leader>b", ":Telescope buffers<cr>", desc = "Buffers", mode = "n"},
+  --       { "<leader>g", ":Telescope live_grep<cr>", desc = "Find in files", mode = "n"},
+  --       { "<leader>u", ":Telescope undo<cr>", desc = "Undo tree", mode = "n"},
+  --       -- LSP
+  --       { "<leader>l", group = "LSP" },
+  --       { "<leader>ll", ":Lspsaga finder<cr>", desc = "See references", mode = "n"},
+  --       { "<leader>lr", ":Lspsaga rename ++project<cr>", desc = "Rename symbol", mode = "n"},
+  --       { "<leader>la", ":Lspsaga code_action<cr>", desc = "Code action", mode = "n"},
+  --       { "<leader>lp", ":Lspsaga peek_definition<cr>", desc = "Peek defenition", mode = "n"},
+  --       { "<leader>lP", ":Lspsaga peek_type_definition<cr>", desc = "Peek type defenition", mode = "n"},
+  --       { "gd", ":Lspsaga goto_definition<cr>", desc = "Go to defenition", mode = "n"},
+  --       { "gD", ":Lspsaga goto_type_definition<cr>", desc = "Go to type defenition", mode = "n"},
+  --     },
+  --   },
+     keys = {
+       {
+         "<leader>?",
+         function()
+           require("which-key").show({ global = false })
+         end,
+         desc = "Buffer Local Keymaps (which-key)",
+       },
+     },
+   }, -- which-key
   { 'alexghergh/nvim-tmux-navigation', config = function()
 
     local nvim_tmux_nav = require('nvim-tmux-navigation')
